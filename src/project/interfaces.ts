@@ -1,7 +1,10 @@
+import { User } from "src/user/user.entity";
+
 export interface CreateProjectPayload {
-    projectName: string;
+    name: string;
+    user: User;
 }
 
 export interface EditProjectPayload {
-    projectName: string;
+    name: string;
 }

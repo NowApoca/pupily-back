@@ -8,23 +8,32 @@ import { CreateInstitutionPayload, EditInstitutionPayload } from "./interfaces"
 export class InstitutionService {
   constructor(
     @InjectRepository(Institution)
-    private projectRepository: Repository<Institution>,
+    private institutionRepository: Repository<Institution>,
   ) {
   }
 
   async editInstitution(body: EditInstitutionPayload, id: number): Promise <void> {
     const editData = {...body};
-    await this.projectRepository.update({ id }, editData)
+    await this.institutionRepository.update({ id }, editData)
   }
 
   async createInstitution(body: CreateInstitutionPayload): Promise <void> {
-    const project = {...body};
-    await this.projectRepository.save(project);
+    const institution = {...body};
+    await this.institutionRepository.save(institution);
   }
 
   async getInstitutions(){
-    const projects = await this.projectRepository.find();
-    return projects;
+    const institutions = await this.institutionRepository.find();
+    return institutions;
+  }
+
+  async deleteInstitution(id: number){
+    const institution = await this.institutionRepository.findOne({
+      id
+    })
+    if(institution){
+      await this.institutionRepository.remove(institution)
+    }
   }
 
 }

@@ -1,7 +1,7 @@
 export interface CreateInstitutionPayload {
-    institutionName: string;
+    name: string;
 }
 
 export interface EditInstitutionPayload {
-    institutionName: string;
+    name: string;
 }

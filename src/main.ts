@@ -6,7 +6,6 @@ async function runApp() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   const configService = app.get<ConfigService>(ConfigService);
-  //const userRepository = app.get<>();
   await app.listen(configService.get("PORT", {infer: true}));
 }
 

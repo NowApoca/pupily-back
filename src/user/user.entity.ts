@@ -2,13 +2,13 @@ import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { UserType } from './interfaces';
 
 @Entity()
-@Unique(["userName"])
+@Unique(["name"])
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  userName: string;
+  name: string;
 
   @Column()
   password: string;

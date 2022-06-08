@@ -5,13 +5,13 @@ export enum UserType {
 }
 
 export interface CreateUserPayload {
-    userName: string;
+    name: string;
     password: string;
     type: UserType;
 }
 
 export interface EditUserPayload {
-    userName: string;
+    name: string;
 }
 
 export interface EditPasswordUserPayload {
@@ -20,6 +20,6 @@ export interface EditPasswordUserPayload {
 }
 
 export interface LoginUserPayload {
-    userName: string;
+    name: string;
     password: string;
 }

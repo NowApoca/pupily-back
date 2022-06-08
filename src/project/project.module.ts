@@ -5,10 +5,12 @@ import { ProjectController } from './project.controller';
 import { Project } from './project.entity';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
+import { LoggerMiddleware } from 'src/middleware';
+import { User } from 'src/user/user.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Project]),
+    TypeOrmModule.forFeature([Project, User]),
     HttpModule,
     ConfigModule
   ],
@@ -16,4 +18,9 @@ import { ConfigModule } from '@nestjs/config';
   controllers: [ProjectController]
 })
 
-export class ProjectModule {}
+export class ProjectModule {
+  configure(consumer: MiddlewareConsumer) {
+  consumer
+    .apply(LoggerMiddleware)
+    .forRoutes('projects');
+}}

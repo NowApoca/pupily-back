@@ -44,7 +44,7 @@ export class UserService {
 
   async login(body: LoginUserPayload): Promise <string> {
     const user = await this.userRepository.findOne({
-      userName: body.userName
+      name: body.name
     })
     if(!user){
       throw new Error(LOGIN_FAIL_MESSAGE);
@@ -52,7 +52,7 @@ export class UserService {
     if(await isValidPassword(body.password, user.password)){
       const token: string = await (new Promise((resolve, reject) => {
         jwt.sign({
-          userName: user.userName,
+          name: user.name,
           id: user.id,
           type: user.type
         }, process.env.PRIVATE_KEY, { algorithm: TOKEN_ALGORITHM }, function(err, resultToken) {

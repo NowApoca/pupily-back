@@ -4,7 +4,11 @@ import * as Joi from 'joi';
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
+import { ProjectModule } from './project/project.module';
+import { InstitutionModule } from './institution/institution.module';
 import { User } from './user/user.entity';
+import { Project } from './project/project.entity';
+import { Institution } from './institution/institution.entity';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -14,16 +18,16 @@ import { User } from './user/user.entity';
       }),
   }), HttpModule,
   TypeOrmModule.forRoot({
-    type: 'postgres',
+    type: (process.env.DB_TYPE as any) || 'postgres', // el any va pq no pude importar esos valores de mongo
     host: process.env.DB_HOST,
     port: 5432,
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSOWRD,
     database: process.env.DB_DATABASE,
-    entities: [User],
+    entities: [User, Project, Institution],
     synchronize: true
   }),
-  UserModule,
+  UserModule, ProjectModule, InstitutionModule,
 ],
   providers: [],
 })

@@ -1,11 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { User } from 'src/user/user.entity';
+import { Entity, Column, PrimaryGeneratedColumn, Unique, ManyToOne } from 'typeorm';
 
 @Entity()
-@Unique(["projectName"])
+@Unique(["name"])
 export class Project {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ManyToOne(user => User)
+  user: User;
+
   @Column()
-  projectName: string;
+  name: string;
 }

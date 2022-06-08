@@ -5,6 +5,7 @@ import { InstitutionController } from './institution.controller';
 import { Institution } from './institution.entity';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
+import { LoggerMiddleware } from 'src/middleware';
 
 @Module({
   imports: [
@@ -16,4 +17,9 @@ import { ConfigModule } from '@nestjs/config';
   controllers: [InstitutionController]
 })
 
-export class InstitutionModule {}
+export class InstitutionModule {
+  configure(consumer: MiddlewareConsumer) {
+  consumer
+    .apply(LoggerMiddleware)
+    .forRoutes('institutions');
+}}

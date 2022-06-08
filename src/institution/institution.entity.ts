@@ -1,11 +1,11 @@
 import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity()
-@Unique(["institutionName"])
+@Unique(["name"])
 export class Institution {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  institutionName: string;
+  name: string;
 }

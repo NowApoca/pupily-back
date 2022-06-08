@@ -5,7 +5,7 @@ import { UserController } from './user.controller';
 import { User } from './user.entity';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
-import { LoggerMiddleware } from "./user.middleware"
+import { LoggerMiddleware } from "../middleware"
 
 @Module({
   imports: [
