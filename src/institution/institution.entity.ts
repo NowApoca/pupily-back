@@ -1,14 +1,11 @@
 import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity()
-@Unique(["userName"])
-export class Pupily {
+@Unique(["institutionName"])
+export class Institution {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  userName: string;
-
-  @Column()
-  password: string;
+  institutionName: string;
 }

@@ -3,8 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PupilyModule } from './pupily/pupily.module';
-import { Pupily } from './pupily/pupily.entity';
+import { UserModule } from './user/user.module';
+import { User } from './user/user.entity';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -20,10 +20,10 @@ import { Pupily } from './pupily/pupily.entity';
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSOWRD,
     database: process.env.DB_DATABASE,
-    entities: [Pupily],
+    entities: [User],
     synchronize: true
   }),
-  PupilyModule,
+  UserModule,
 ],
   providers: [],
 })
