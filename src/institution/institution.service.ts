@@ -22,6 +22,12 @@ export class InstitutionService {
     await this.institutionRepository.save(institution);
   }
 
+  async getInstitution(id){
+    return this.institutionRepository.findOne({
+      id
+    });
+  }
+
   async getInstitutions(){
     const institutions = await this.institutionRepository.find();
     return institutions;

@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Unique, ManyToMany, JoinTable } from 'typeorm';
 import { UserType } from './interfaces';
 
 @Entity()
@@ -15,4 +15,12 @@ export class User {
 
   @Column()
   type: UserType;
+
+  @ManyToMany(() => User)
+  @JoinTable()
+  pupilies: User[];
+
+  @ManyToMany(() => User)
+  @JoinTable()
+  sponsors: User[];
 }

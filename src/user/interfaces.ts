@@ -1,3 +1,5 @@
+import { User } from "./user.entity";
+
 export enum UserType {
     ADMIN = "admin",
     PUPILY = "pupily",
@@ -22,4 +24,11 @@ export interface EditPasswordUserPayload {
 export interface LoginUserPayload {
     name: string;
     password: string;
+}
+
+export interface ResLoginUser {
+    name: string;
+    token: string;
+    type: UserType;
+    id: number;
 }

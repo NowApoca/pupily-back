@@ -17,6 +17,7 @@ export class ProjectService {
 
   async editProject(body: EditProjectPayload, id: number): Promise <void> {
     const editData = {...body};
+    console.log(body, id)
     await this.projectRepository.update({ id }, editData)
   }
 
@@ -32,6 +33,12 @@ export class ProjectService {
   async getProjects(){
     const projects = await this.projectRepository.find();
     return projects;
+  }
+
+  async getProject(id){
+    return this.projectRepository.findOne({
+      id
+    });
   }
 
   async deleteProject(id: number){
