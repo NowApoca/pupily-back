@@ -2,6 +2,9 @@ import { Controller, Get, Post, Body, Put, Param, Response, Delete, HttpStatus }
 import { ProjectService } from './project.service';
 import { CreateProjectPayload, EditProjectPayload } from "./interfaces"
 import { Project } from "./project.entity"
+import { UserType } from 'src/user/interfaces';
+
+const USER_NOT_PUPILY = "USER_NOT_PUPILY"
 
 @Controller("projects")
 export class ProjectController {
@@ -22,8 +25,12 @@ export class ProjectController {
   }
   
   @Get()
-  async getProjects(): Promise <Project[]> {
-    return this.appService.getProjects();
+  async getProjects(@Response() res): Promise <void> {
+    checkAuth(res);
+    if(res.locals.user.type != UserType.PUPILY){
+      throw new Error(USER_NOT_PUPILY);
+    }
+    res.status(HttpStatus.ACCEPTED).send(await this.appService.getProjects(res.locals.user.id));
   }
   
   @Get(':projectId')

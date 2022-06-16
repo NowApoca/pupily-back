@@ -30,8 +30,9 @@ export class ProjectService {
     await this.projectRepository.save(project);
   }
 
-  async getProjects(){
-    const projects = await this.projectRepository.find();
+  async getProjects(userId: number){
+    const user = await this.userRepository.findOne({id: userId})
+    const projects = await this.projectRepository.find({user});
     return projects;
   }
 

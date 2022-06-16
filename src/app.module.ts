@@ -25,7 +25,6 @@ import { Institution } from './institution/institution.entity';
     password: process.env.DB_PASSOWRD,
     database: process.env.DB_DATABASE,
     entities: [User, Project, Institution],
-    logging: true,
     synchronize: true
   }),
   UserModule, ProjectModule, InstitutionModule,
